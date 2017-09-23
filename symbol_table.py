@@ -1,0 +1,167 @@
+
+# coding: utf-8
+
+# # Compiler Design - Symbol Table
+# **Symbol table is an important data structure created and maintained by compilers in order to store information about the occurrence of various entities such as variable names, function names, objects, classes, interfaces, etc. Symbol table is used by both the analysis and the synthesis parts of a compiler.**
+
+# In[1]:
+
+
+import pandas as pd #import dependencies 
+
+
+# In[2]:
+
+
+df = pd.read_csv('Keywords.csv') #I collect all C language Keyword , operator data and store them in a csv file
+df.head() #Showing top 5 data
+
+
+# In[3]:
+
+
+keyword = df['keyword'].dropna().values #addaing keyword from csv file and remove any NaN or empty row
+math_oprator = df['Arithmetic Operators'].dropna().values
+logical = df['Logical Operators'].dropna().values
+bitwise = df['Bitwise Operators'].dropna().values
+other = df['Other Operators'].dropna().values
+
+
+# In[4]:
+
+
+file = """
+int a , b , c ;
+float d , e ;
+a = b = 5 ;
+c = 6 ;
+if ( a > b )
+{
+    c = a - b ;
+    e = d - 2.0 ;
+}
+else
+{
+    d = e + 6.0 ;
+    b = a + c ;
+}
+
+
+"""
+# Output:
+# Keywords: int, float, if, else
+# Identifiers: a, b, c, d, e
+# Math Operators: +, -, =
+# Logical Operators: >
+# Numerical Values: 5, 6, 2.0, 6.0
+# Others: , ; ( ) { }
+
+
+# ***lexical analyzer function will split the code in to lexic***
+
+# In[5]:
+
+
+def lexical_analyzer(file): 
+    """file:  will take any text file
+        return: lexical analyze of that file."""
+    return file.split()
+
+
+# ***symbol table function will create a symbol table from the lexic***
+
+# In[6]:
+
+
+def symbol_table (inputs):
+    """inputs: Will take a lexical analyzed array,
+        return: return a dictonary with Keywords, Identifiers, Operators and values"""
+    k = []
+    m = []
+    l = []
+    b = []
+    o = []
+    n = []
+    i = []
+    f = []
+    
+    for data in inputs:
+        if data in keyword: # checking the lexic is in the keyword list
+            if data not in k: # if the lexic is not in symbol table will add in the table else will drop   
+                k.append(data)
+        elif data in math_oprator:
+            if data not in m:
+                m.append(data)
+        elif data in logical:
+            if data not in l:
+                l.append(data)
+        elif data in bitwise:
+            if data not in b:
+                b.append(data)
+        elif data in other:
+            if data not in o:
+                o.append(data)
+        else:
+            try:
+                num = int(data)
+                if num not in n:
+                    n.append(num)
+            except:
+                try:
+                    num = float(data)
+                    if num not in f:
+                        f.append(num)
+                except:
+                    if data not in i:
+                        i.append(data)
+    
+    outputs = {
+        'Keywords': k,
+        'Identifiers' : i,
+        'Math Operators' : m,
+        'Logical Operators' : l + b,
+#         'Bitwise Operators' : b,
+        'Numerical Values' : n + f, #adding both flot and int value
+        'Others' : o
+    }
+    
+    return outputs
+
+
+# ***lexical analyze the input file***
+
+# In[7]:
+
+
+lexic = lexical_analyzer(file) 
+
+
+# ***Creating Symbol table***
+
+# In[8]:
+
+
+table = symbol_table(inputs=lexic) 
+
+
+# ***Showing table as a table format using pandas***
+
+# In[9]:
+
+
+df1 = pd.DataFrame([table], columns=table.keys())
+df1
+
+
+# ***Printing the table***
+
+# In[10]:
+
+
+for i in table:
+    print(i, table[i])
+
+
+# # Thank You
+# ## ***Shahariar Rabby***
+# ***151-15-5424***
