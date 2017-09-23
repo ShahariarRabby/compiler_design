@@ -2,32 +2,19 @@
 # coding: utf-8
 
 # # Compiler Design - Symbol Table
-# **Symbol table is an important data structure created and maintained by compilers in order to store information about the occurrence of various entities such as variable names, function names, objects, classes, interfaces, etc. Symbol table is used by both the analysis and the synthesis parts of a compiler.**
-
-# In[1]:
-
-
+# **Symbol table is an important data structure created and maintained by compilers in order to 
+# store information about the occurrence of various entities such as variable names, function names, objects, 
+# classes, interfaces, etc. Symbol table is used by both the analysis and the synthesis parts of a compiler.**
 import pandas as pd #import dependencies 
 
-
-# In[2]:
-
-
-df = pd.read_csv('Keywords.csv') #I collect all C language Keyword , operator data and store them in a csv file
+df = pd.read_csv('symbol.csv') #I collect all C language Keyword , operator data and store them in a csv file
 df.head() #Showing top 5 data
-
-
-# In[3]:
-
 
 keyword = df['keyword'].dropna().values #addaing keyword from csv file and remove any NaN or empty row
 math_oprator = df['Arithmetic Operators'].dropna().values
 logical = df['Logical Operators'].dropna().values
 bitwise = df['Bitwise Operators'].dropna().values
 other = df['Other Operators'].dropna().values
-
-
-# In[4]:
 
 
 file = """
@@ -57,9 +44,7 @@ else
 # Others: , ; ( ) { }
 
 
-# ***lexical analyzer function will split the code in to lexic***
-
-# In[5]:
+# ***lexical analyzer function will split the code in to 
 
 
 def lexical_analyzer(file): 
@@ -68,10 +53,7 @@ def lexical_analyzer(file):
     return file.split()
 
 
-# ***symbol table function will create a symbol table from the lexic***
-
-# In[6]:
-
+# ***symbol table function will create a symbol table from the l
 
 def symbol_table (inputs):
     """inputs: Will take a lexical analyzed array,
@@ -114,7 +96,7 @@ def symbol_table (inputs):
                 except:
                     if data not in i:
                         i.append(data)
-    
+
     outputs = {
         'Keywords': k,
         'Identifiers' : i,
@@ -127,41 +109,16 @@ def symbol_table (inputs):
     
     return outputs
 
-
 # ***lexical analyze the input file***
-
-# In[7]:
-
-
 lexic = lexical_analyzer(file) 
-
-
 # ***Creating Symbol table***
-
-# In[8]:
-
-
 table = symbol_table(inputs=lexic) 
-
-
 # ***Showing table as a table format using pandas***
-
-# In[9]:
-
-
 df1 = pd.DataFrame([table], columns=table.keys())
-df1
-
-
+print(df1)
 # ***Printing the table***
-
-# In[10]:
-
-
 for i in table:
     print(i, table[i])
 
-
 # # Thank You
 # ## ***Shahariar Rabby***
-# ***151-15-5424***
