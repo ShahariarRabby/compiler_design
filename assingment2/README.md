@@ -5,7 +5,7 @@ In this assignment, you will implement how to evaluate a mathematical expression
 
 
 ### input 1:
-<ol>
+<ul>
   <li>number of variables: 3</li>
     <li>a = 1
 </li>
@@ -14,34 +14,34 @@ In this assignment, you will implement how to evaluate a mathematical expression
   <li>c = 2
 </li>
 
-  </ol>
+  </ul>
  
-<ol>
+<ul>
   <li>number of equations: 2</li>
     <li>a x b + a x c + b x c
 </li>
   <li>a x c - b / c + c x c
 </li>
 
-  </ol>
+  </ul>
 
 
 
 ## output 2:
 
-<ol>
+<ul>
   <li>number of equations: 2</li>
     <li>8 : for first equation
 </li>
   <li>5 : for second equation
 </li>
 
-  </ol>
+  </ul>
   
 
 
 ### input 2:
-<ol>
+<ul>
   <li>number of variables: 4</li>
     <li>g = 2
 
@@ -53,9 +53,9 @@ In this assignment, you will implement how to evaluate a mathematical expression
  <li>w = 2
 </li>
 
-  </ol>
+  </ul>
  
-<ol>
+<ul>
   <li>number of equations: 3</li>
     <li>g + p x t - w x p
 
@@ -64,13 +64,13 @@ In this assignment, you will implement how to evaluate a mathematical expression
 </li>
   <li>e + t x t - m
 </li>
-  </ol>
+  </ul>
 
 
 
 ## output 2:
 
-<ol>
+<ul>
   <li>number of equations: 2</li>
     <li>-1 //for first equation
 
@@ -79,4 +79,4 @@ In this assignment, you will implement how to evaluate a mathematical expression
 </li>
   <li>Compilation Error // for third equation
 </li>
-  </ol>
+  </ul>
